@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from postgres_copy import Copy
+from postgres_copy import CopyMapping
 from csvkit import CSVKitReader
 from django.db import connection
 from django.conf import settings
@@ -116,7 +116,7 @@ class Command(CalAccessCommand, LabelCommand):
             model._meta.db_table
         ))
 
-        c = Copy(
+        c = CopyMapping(
             model,
             csv_path,
             dict((f.db_column, f.name) for f in model._meta.fields),
